@@ -1,10 +1,1 @@
-This is the chess web application based on Mediocre chess engine by Jonatan Peterson and Play web framework. Here you can play chess, save current game into XML on your computer and load it from there. Also you can take bad move back and look at previous moves. 
-
-1. Board 
-
-Play by moving pieces on the chess board. By default your side is white located down the board. You can change this pressing "MOVE" button and/or "Turn sides" button. If click on a piece of your color the clicked square is emphasized by yellow border. Squares where piece from bordered square can move are ensquared by red border. 
-
-There is settings popup window where you can set ponder time for computer and assign players.
-Three options are possible. 
-
-First is Mediocre vs Medoicre. It means your computer will play with itself. Choose this radiobutton and press MOVE button. You will see that computer moves step by step until game is finished or you change this setting. 
+This is the chess web application based on Mediocre chess engine by Jonatan Peterson and Play web framework. Here you can play chess, save current game into XML on your computer and load it from there. Also you can take bad move back and look at previous moves.
