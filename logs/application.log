@@ -1,0 +1,33 @@
+2013-07-10 22:51:19,287 - [INFO] - from play in main 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2013-07-10 22:51:51,152 - [INFO] - from play in New I/O  worker #1 
+Application started (Dev)
+
+2013-07-10 22:53:45,532 - [INFO] - from play in play-akka.actor.default-dispatcher-8 
+Starting application default Akka system.
+
+2013-07-10 23:00:15,172 - [INFO] - from play in New I/O  worker #3 
+Shutdown application default Akka system.
+
+2013-07-10 23:00:15,332 - [INFO] - from play in New I/O  worker #3 
+Application started (Dev)
+
+2013-07-10 23:01:51,723 - [INFO] - from play in main 
+Application started (Prod)
+
+2013-07-10 23:01:51,845 - [INFO] - from play in main 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2013-07-10 23:04:13,147 - [INFO] - from play in main 
+Application started (Prod)
+
+2013-07-10 23:04:13,258 - [INFO] - from play in main 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2013-07-10 23:04:35,894 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
+Starting application default Akka system.
+
+2013-07-12 10:03:25,079 - [INFO] - from play in Thread-4 
+Shutdown application default Akka system.
+

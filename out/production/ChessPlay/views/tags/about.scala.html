@@ -1,0 +1,52 @@
+@(value: String)
+<div class="generic_dialog" id="fb-modal-about">
+	<div class="generic_dialog_popup" style="top: 70px; ">
+		<table class="pop_dialog_table" id="pop_dialog_table"
+               style="width: 532px;">
+			<tbody>
+				<tr>
+					<td class="pop_topleft" />
+					<td class="pop_border pop_top" />
+					<td class="pop_topright" />
+				</tr>
+				<tr>
+					<td class="pop_border pop_side" />
+					<td id="pop_content" class="pop_content">
+						<h2 class="dialog_title">
+							<span>About</span>
+						</h2>
+						<div class="dialog_content">
+							<div class="dialog_body" style="height: 400px;">
+                                This is the chess web application based on Mediocre chess engine by Jonatan Peterson and Play web framework. Here you can play chess, save current game into XML on your computer and load it from there. Also you can take bad move back and look at previous moves.
+                                <br><br>
+                                1. Board
+                                <br><br>
+                                Play by moving pieces on the chess board. By default your side is white located down the board. You can change this pressing "MOVE" button and/or "Turn sides" button. If click on a piece of your color the clicked square is emphasized by yellow border. Squares where piece from bordered square can move are ensquared by red border.
+                                <br><br>
+                                There is settings popup window where you can set ponder time for computer and assign players.<br>
+                                Three options are possible.
+                                <br><br>
+                                First is Mediocre vs Medoicre. It means your computer will play with itself. Choose this radiobutton and press MOVE button. You will see that computer moves step by step until game is finished or you change this setting.
+                                <br><br>
+                                Second is Human vs Human. The computer won't response for your move on the board.
+                                And the last is Human vs Mediocre. A move will be thought and done by computer if only you make a new one the board. If you press MOVE button computer generates a new move and passes turn to you.
+                                <div class="dialog_buttons" style="top: 5%;">
+@*									<input type="button" value="Save" name="save"
+										class="inputsubmit" id="fb-save-about" />	*@
+									<input type="button" value="Close" name="close"
+										class="inputsubmit" id="fb-close-about" />
+								</div>
+							</div>
+						</div>
+					</td>
+					<td class="pop_border pop_side" />
+				</tr>
+				<tr>
+					<td class="pop_bottomleft" />
+					<td class="pop_border pop_bottom" />
+					<td class="pop_bottomright" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
