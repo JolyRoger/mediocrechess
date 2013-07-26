@@ -1,1 +1,4 @@
 This is the chess web application based on Mediocre chess engine by Jonatan Peterson and Play web framework. Here you can play chess, save current game into XML on your computer and load it from there. Also you can take bad move back and look at previous moves.
+
+
+To use this source code you need to create new Play2 project and exchange the new created folders app, conf and public to getting from github.
