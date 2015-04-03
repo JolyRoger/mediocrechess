@@ -4,17 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 import mediocrechess.mediocre.board.Board;
 import mediocrechess.mediocre.board.Move;
 import mediocrechess.mediocre.engine.Engine;
 import mediocrechess.mediocre.def.Definitions;
-import play.libs.Akka;
 
 public class Uci implements Definitions {
 	private static final String VERSION = "0.5";
@@ -83,7 +78,7 @@ public class Uci implements Definitions {
 		free = false;
 		out = new StringBuilder();
 		// This is the loop in which we look for incoming commands from Uci
-//		System.out.println("Received command: >" + command + "<");
+		System.out.println("Received command: >" + command + "<");
 		logger.debug("Received command: >" + command + "<");
 
 		if ("uci".equals(command)) {
@@ -312,7 +307,7 @@ public class Uci implements Definitions {
 			}
 		}
 		free = true;
-		System.out.println('\t'+out.toString());
+//		System.out.println('\t'+out.toString());
 		return out.toString();
 	} // END uci()
 
