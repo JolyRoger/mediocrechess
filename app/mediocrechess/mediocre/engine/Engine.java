@@ -808,12 +808,11 @@ public class Engine implements Definitions {
 	private void sortMoves(Move[] moves, int from, int to) {
 		for (int i = from+1; i < to; i++) {
 			int j = i;
-			Move B = moves[i];
-			while ((j > from) && (moves[j-1].score < B.score)) {
+			while ((j > from) && (moves[j-1].score < moves[i].score)) {
 				moves[j] = moves[j-1];
 				j--;
 			}
-			moves[j] = B;
+			moves[j] = moves[i];
 		}
 	}
 	

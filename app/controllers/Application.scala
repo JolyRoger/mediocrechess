@@ -42,7 +42,7 @@ object Application extends Controller {
 	println("delete id=" + id)
     for {
       files <- Option(new File(path + "public/saves").listFiles)
-      file <- files if file.getName.startsWith(id + "_")
+      file <- files if file.getName.startsWith((id + "_").toString)
     } file.delete()
 //    SimpleResult(
 //    		header = ResponseHeader(200),
@@ -69,53 +69,93 @@ object Application extends Controller {
   }
   }
 
-  
-  def start = Action {
-	val promiseOfString: Future[String] = Akka.future {
-//	  GameEngine.newUci
-	  "success"
-  	}
-	AsyncResult {
-	  promiseOfString.map( i => Ok("Got result: " + i))
-	}
+  def start = Action.async {
+    val promiseOfString: Future[String] = Future("success")
+    promiseOfString.map( i => Ok("Got result: " + i))
   }
-  
-  def next(playWithFen: String) = Action { request =>
-	  request.session.get("ID").map { id =>
-	    var oldlegal = ""
-	    var oldfen = ""
-	    request.body.asJson.map { json =>
-			  val promiseOfString: Future[String] = Akka.future {
-				  if (playWithFen == "false") {
-				    GameEngine.setFromMoves(id, (json \ "history").as[String])
-				  } else {
-					  GameEngine.setFromFen(id, (json \ "history").as[String], (json \ "fen").as[String])
-				  }
-				  oldfen = GameEngine.getFen(id)
-				  oldlegal = GameEngine.getLegalMoves(id)
-				  
-				  val gamover = GameEngine.isGameOver(id)
-				  if (gamover != "PROCESS") {
-					  gamover
-				  } else {
-					  GameEngine.go(id)
-				  }
-			  }
-			  AsyncResult {
-				  promiseOfString.map { res =>
-            println("resgame: " + res)
-				  Ok(Json.toJson( Map("status" -> res,
-						  "newfen" -> GameEngine.getFen(id),
-						  "oldfen" -> oldfen,
-						  "bestmove" -> res,
-						  "oldlegal" -> oldlegal,
-						  "newlegal" -> GameEngine.getLegalMoves(id),
-						  "gamover" -> GameEngine.isGameOver(id))))
-				  }
-			  }
-		}.getOrElse { BadRequest("Expecting Json data") }
-	  }.getOrElse { BadRequest("Unknown ID") }
+
+//  def start = Action {
+//	val promiseOfString: Future[String] = Akka.future {
+////	  GameEngine.newUci
+//	  "success"
+//  	}
+//	AsyncResult {
+//	  promiseOfString.map( i => Ok("Got result: " + i))
+//	}
+//  }
+  def next(playWithFen: String) = Action.async { request =>
+    request.session.get("ID") match {
+      case Some(id) =>
+        var oldlegal = ""
+        var oldfen = ""
+        request.body.asJson match {
+          case Some(json) =>
+            val promiseOfString: Future[String] = Future {
+              if (playWithFen == "false") {
+                GameEngine.setFromMoves(id, (json \ "history").as[String])
+              } else {
+                GameEngine.setFromFen(id, (json \ "history").as[String], (json \ "fen").as[String])
+              }
+              oldfen = GameEngine.getFen(id)
+              oldlegal = GameEngine.getLegalMoves(id)
+
+              val gamover = GameEngine.isGameOver(id)
+              if (gamover != "PROCESS") {
+                gamover
+              } else {
+                GameEngine.go(id)
+              }
+            }
+            promiseOfString.map(res =>
+              Ok(Json.toJson( Map("status" -> res,
+                "newfen" -> GameEngine.getFen(id),
+                "oldfen" -> oldfen,
+                "bestmove" -> res,
+                "oldlegal" -> oldlegal,
+                "newlegal" -> GameEngine.getLegalMoves(id),
+                "gamover" -> GameEngine.isGameOver(id)))))
+          case None => Future(BadRequest("Unknown JSON"))
+        }
+      case None => Future(BadRequest("Unknown ID"))
+    }
   }
+
+  //  def next(playWithFen: String) = Action { request =>
+  //	  request.session.get("ID").map { id =>
+  //	    var oldlegal = ""
+  //	    var oldfen = ""
+  //	    request.body.asJson.map { json =>
+  //			  val promiseOfString: Future[String] = Akka.future {
+  //				  if (playWithFen == "false") {
+  //				    GameEngine.setFromMoves(id, (json \ "history").as[String])
+  //				  } else {
+  //					  GameEngine.setFromFen(id, (json \ "history").as[String], (json \ "fen").as[String])
+  //				  }
+  //				  oldfen = GameEngine.getFen(id)
+  //				  oldlegal = GameEngine.getLegalMoves(id)
+  //
+  //				  val gamover = GameEngine.isGameOver(id)
+  //				  if (gamover != "PROCESS") {
+  //					  gamover
+  //				  } else {
+  //					  GameEngine.go(id)
+  //				  }
+  //			  }
+  //			  AsyncResult {
+  //				  promiseOfString.map { res =>
+  //            println("resgame: " + res)
+  //				  Ok(Json.toJson( Map("status" -> res,
+  //						  "newfen" -> GameEngine.getFen(id),
+  //						  "oldfen" -> oldfen,
+  //						  "bestmove" -> res,
+  //						  "oldlegal" -> oldlegal,
+  //						  "newlegal" -> GameEngine.getLegalMoves(id),
+  //						  "gamover" -> GameEngine.isGameOver(id))))
+  //				  }
+  //			  }
+  //		}.getOrElse { BadRequest("Expecting Json data") }
+  //	  }.getOrElse { BadRequest("Unknown ID") }
+  //  }
 
   def rate = Action {
     for {
