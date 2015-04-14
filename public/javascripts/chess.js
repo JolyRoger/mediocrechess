@@ -661,7 +661,7 @@ function setEnableButton(val) {
 
 function gameOver(result) {
 //    addMoveToPage(result/*, false, true*/)
-//	console.log('Game over: ' + result+ ' top='+$('.board').position().top+' left='+$('.board').position().left)
+	console.log('Game over: ' + result+ ' top='+$('.board').position().top+' left='+$('.board').position().left)
 //	var element = $('<img>')
 //	$(element).attr('src', )
 //	$(element).addClass('square')

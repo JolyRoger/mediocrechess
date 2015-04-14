@@ -100,6 +100,7 @@ object Application extends Controller {
               oldlegal = GameEngine.getLegalMoves(id)
 
               val gamover = GameEngine.isGameOver(id)
+              println("gamover: " + gamover)
               if (gamover != "PROCESS") {
                 gamover
               } else {
@@ -188,8 +189,10 @@ object Application extends Controller {
 			    (request.body \ "userid").asOpt[String].map { userid =>
             (request.body \ "moves").asOpt[JsArray].map { moves =>
 //              println("moves: " + (moves/* \\ "note"*/))
+              println("path: " + path)
 			      val f = new File(path + "public/saves/" + userid + "_" + new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss").format(Calendar.getInstance.getTime) +
 			          ".chess")
+              println("file: " + f.getAbsolutePath)
 			      if (f.createNewFile()) {
 			    	  val output = Resource fromFile f.getAbsolutePath
 

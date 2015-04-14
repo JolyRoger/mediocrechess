@@ -11,7 +11,7 @@ import mediocrechess.mediocre.def.Definitions;
  * 
  * @author Jonatan Pettersson (mediocrechess@gmail.com)
  */
-public class Move implements Definitions {
+public class Move implements Definitions, Comparable {
 	public int move;
 	public int score;
 	
@@ -254,5 +254,11 @@ public class Move implements Definitions {
 	private static void positionToString(final int position, final StringBuilder buffer) {
 		buffer.append("abcdefgh".charAt(position % 16));
 		buffer.append(((position - (position % 16)) / 16) + 1);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (!(o instanceof Move)) return 1;
+		return score - ((Move) o).score;
 	}
 }

@@ -307,7 +307,7 @@ public class Uci implements Definitions {
 			}
 		}
 		free = true;
-//		System.out.println('\t'+out.toString());
+		System.out.println('\t'+out.toString());
 		return out.toString();
 	} // END uci()
 

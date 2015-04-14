@@ -1,6 +1,7 @@
 package mediocrechess.mediocre.engine;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -806,16 +807,9 @@ public class Engine implements Definitions {
 	 * @throws Exception
 	 */
 	private void sortMoves(Move[] moves, int from, int to) {
-		for (int i = from+1; i < to; i++) {
-			int j = i;
-			while ((j > from) && (moves[j-1].score < moves[i].score)) {
-				moves[j] = moves[j-1];
-				j--;
-			}
-			moves[j] = moves[i];
-		}
+		Arrays.sort(moves, from, to);
 	}
-	
+
 	/**
 	 *  Similar to mateCheck but only reports if the king of the side moving
 	 *  is in check or not
