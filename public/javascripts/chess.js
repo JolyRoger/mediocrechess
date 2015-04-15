@@ -656,7 +656,7 @@ function setEnableButton(val) {
 		$('button[name="loadgame"]').attr('disabled', 'true')
 		$('button[name="moveback"]').attr('disabled', 'true')
 	}
-    enableMoveBtn(val)
+//    enableMoveBtn(val)
 }
 
 function gameOver(result) {
