@@ -1,7 +1,6 @@
 package mediocrechess
 
-import mediocrechess.mediocre.main.Uci
-//import scala.collection.mutable.Map
+import mediocrechess.uci.com.alonsoruibal.chess.uci.Uci
 
 object GameEngine {
   	val UCI = "uci "; 
@@ -44,7 +43,7 @@ object GameEngine {
 	def newGame(id: Int) = {
 		idMap.get(id) match {
 		  case Some(uci) => 
-		    uci.init();
+		    uci.init
 		    uci.uci(UCINEWGAME)
 		  case None => "Uci with id " + id + " not found"
 		}
